@@ -48,22 +48,24 @@ class Form extends React.Component {
 }
 
 const CardList = (props) => (
-
-
     <div className="row">
-        {props.profiles.map((profile, index) => {
-            return <Card key={profile.id} profile={profile} />
-        })}
+        {props.profiles.map((profile, index) =>  
+            <Card key={index} profile={profile} />
+        )}
     </div>
-
 );
 
 
 class Card extends React.Component {
 
+
+
     render() {
         const profile = this.props.profile;
-        const pName = (profile.name ? profile.name : "no name");
+        const pName = (profile.name ? profile.name : "No Name");
+        const pRepos = (profile.public_repos ? "Repos: " + profile.public_repos : "");
+        const pGists = (profile.public_gists ? "Gists: " + profile.public_gists : "");
+        const pFollowers = (profile.followers ? "Followers: " + profile.followers : "");
 
         return (
             <div className="card align-self-center col-12 col-sm-8 col-md-6 col-lg-3 h-100">
@@ -74,8 +76,8 @@ class Card extends React.Component {
                     <a className="nav-link" href={profile.html_url}>
                         <h5 className="card-title">{profile.login}</h5>
                     </a>
-                    <p className="card-text">{profile.name}</p>
-                    <p className="card-text">Repos: {profile.public_repos}  Gists: {profile.public_gists} Followers: {profile.followers}</p>
+                    <p className="card-text">{pName}</p>
+                    <p className="card-text">{pRepos} {pGists} {pFollowers}</p>
                 </div>
             </div>
         );

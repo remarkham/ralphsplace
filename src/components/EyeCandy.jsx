@@ -1,6 +1,9 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 const images = [
     {
@@ -94,9 +97,20 @@ const images = [
 ];
 
 const EyeCandy = () => (
+    <>
     <div className="container-sm">
         <ImageGallery items={images} />
     </div>
+    <div className="container-sm">
+        <Carousel >
+        {images.map((img, index) => (
+            <div key={index} >
+                <img src={img.original} alt=""/>
+            </div>
+        ))}
+        </Carousel>
+    </div>
+    </>
 );
 
 export default EyeCandy;
